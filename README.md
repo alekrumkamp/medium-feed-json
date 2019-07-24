@@ -1,2 +1,2 @@
-# medium-fetch
-Fetch your medium feed without the need to worry about CORS issues
+# Medium Feed
+### Fetch your entire Medium feed in JSON format using Cloudflare Workers
