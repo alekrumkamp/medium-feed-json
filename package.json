@@ -1,7 +1,7 @@
 {
-    "name": "medium-feed",
+    "name": "medium-feed-json",
     "version": "1.0.0",
-    "description": "Fetch you whole Medium feed in JSON format using Cloudflare Workers",
+    "description": "Fetch your Medium feed in JSON format using Cloudflare Workers",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
