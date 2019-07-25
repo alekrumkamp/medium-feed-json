@@ -26,4 +26,4 @@ class Post {
   }
 }
 
-export default Post;
+exports.Post = Post;
