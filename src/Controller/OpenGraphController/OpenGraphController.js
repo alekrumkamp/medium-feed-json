@@ -22,7 +22,10 @@ class OpenGraphController {
       return fetch(anIncompletePost.url)
         .then(res => res.text())
         .then(res => this.fillRemainingPostInfo(anIncompletePost, res))
-        .then((res) => { finalPosts.push(res); return this.completePosts(response, finalPosts); });
+        .then((res) => {
+          finalPosts.push(res);
+          return this.completePosts(response, finalPosts);
+        });
     }
 
     response.data.posts = finalPosts;

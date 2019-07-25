@@ -1,8 +1,6 @@
 const { graphqlRequestBody } = require('../../Model/graphqlRequestBody/graphqlRequestBody');
 const { Post } = require('../../Model/Post/Post');
 
-const imagesCDNUrl = '';
-
 class GraphqlFeedController {
   constructor() {
     this.allPosts = [];
