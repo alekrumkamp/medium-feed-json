@@ -2,9 +2,10 @@ const { GraphqlFeedController } = require('./Controller/GraphqlFeedController/Gr
 const { UserController } = require('./Controller/UserController/UserController');
 
 function createResponse(content) {
-  const response = new Response(JSON.stringify(content));
-  response.headers.append('Content-Type', 'application/json');
-  response.headers.append('Access-Control-Allow-Origin', '*');
+  const responseHeader = new Headers();
+  responseHeader.append('Content-Type', 'application/json');
+  responseHeader.append('Access-Control-Allow-Origin', '*');
+  const response = new Response(JSON.stringify(content), { headers: responseHeader });
   return response;
 }
 

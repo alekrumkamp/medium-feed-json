@@ -5,17 +5,13 @@ class Post {
     aShortDescription,
     anImageUrl,
     aUrl,
-    aCreationDate,
-    aLanguage,
-    someTags) {
+    aCreationDate) {
     this.id = this.requiredProperty(anId);
-    this.title = this.requiredProperty(aTitle);
-    this.shortDescription = this.requiredProperty(aShortDescription);
+    this.title = aTitle;
+    this.shortDescription = aShortDescription;
     this.imageUrl = anImageUrl;
     this.url = this.requiredProperty(aUrl);
     this.createdAt = this.requiredProperty(aCreationDate);
-    this.language = aLanguage;
-    this.tags = someTags;
   }
 
   requiredProperty(property) {
