@@ -1,7 +1,8 @@
 const { GraphqlFeedController } = require('./Controller/GraphqlFeedController/GraphqlFeedController');
 const { UserController } = require('./Controller/UserController/UserController');
+const { OpenGraphController } = require('./Controller/OpenGraphController/OpenGraphController');
 
-const cache = caches.default;
+const cloudflareCache = caches.default;
 
 function createResponse(content) {
   const responseHeader = new Headers();
@@ -12,21 +13,24 @@ function createResponse(content) {
 }
 
 function cacheResponse(event, response) {
-  return cache.put(event.request, response.clone())
+  return cloudflareCache.put(event.request, response.clone())
     .then(() => response);
 }
 
 exports.handleRequest = async function handleRequest(event) {
-  const cachedResponse = await cache.match(event.request);
+  const cachedResponse = await cloudflareCache.match(event.request);
 
   if (cachedResponse) {
     return cachedResponse;
   }
 
+  const finalPosts = [];
   const graphqlFeedController = new GraphqlFeedController();
   const userController = new UserController();
+  const openGraphController = new OpenGraphController();
   return userController.getUserId()
     .then(userId => graphqlFeedController.getFeed(userId))
+    .then(latestsPosts => openGraphController.completePosts(latestsPosts, finalPosts))
     .then(latestsPosts => createResponse(latestsPosts))
     .then(response => cacheResponse(event, response));
 };
