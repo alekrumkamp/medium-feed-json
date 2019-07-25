@@ -1,6 +1,10 @@
 class UserController {
+  constructor(aUsername) {
+    this.username = aUsername;
+  }
+
   getUserPath() {
-    return 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40alekrumkamp';
+    return `https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40${this.username}`;
   }
 
   extractIdFromString(string) {

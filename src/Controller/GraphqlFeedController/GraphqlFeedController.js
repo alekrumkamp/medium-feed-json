@@ -12,7 +12,7 @@ class GraphqlFeedController {
     return 'https://medium.com/_/graphql';
   }
 
-  process(response, userId) {
+  adaptPosts(response) {
     response.data.user.latestStreamConnection.stream.forEach((item) => {
       if (item.itemType.post) {
         const { paragraphs } = item.itemType.post.previewContent.bodyModel;
@@ -23,11 +23,8 @@ class GraphqlFeedController {
       }
     });
     const { next } = response.data.user.latestStreamConnection.pagingInfo;
-    if (!next) {
-      return JSON.stringify(response);
-    }
-    const nextPageId = next.to;
-    return this.getFeed(userId, nextPageId);
+
+    return { data: { posts: this.allPosts }, next: next ? next.to : undefined };
   }
 
   getFeed(userId, to) {
@@ -37,8 +34,7 @@ class GraphqlFeedController {
       headers: { 'Content-Type': 'application/json' },
     })
       .then(response => response.json())
-      .then(jsonResponse => this.process(jsonResponse, userId))
-      .then(() => this.allPosts);
+      .then(jsonResponse => this.adaptPosts(jsonResponse, userId));
   }
 }
 

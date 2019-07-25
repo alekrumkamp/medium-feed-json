@@ -15,15 +15,19 @@ class OpenGraphController {
     return finishedPost;
   }
 
-  completePosts(incompletePosts, finalPosts) {
-    const anIncompletePost = incompletePosts.pop();
+  completePosts(response, finalPosts) {
+    const anIncompletePost = response.data.posts.pop();
+
     if (anIncompletePost) {
       return fetch(anIncompletePost.url)
         .then(res => res.text())
         .then(res => this.fillRemainingPostInfo(anIncompletePost, res))
-        .then((res) => { finalPosts.push(res); return this.completePosts(incompletePosts, finalPosts); });
+        .then((res) => { finalPosts.push(res); return this.completePosts(response, finalPosts); });
     }
-    return finalPosts.reverse();
+
+    response.data.posts = finalPosts;
+
+    return response;
   }
 }
 
