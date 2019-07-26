@@ -27,7 +27,7 @@ Contiene todo el código necesario para ser utilizado en  [Cloudflare Workers](h
 ### Utilizando código preprocesado en cloudflareworkers.com
 Para tener una idea de qué tan fácil es obtener tu historial de Medium, simplemente copia el [script.js](/worker/script.js) y edita la línea `const username = 'alekrumkamp'` por tu usuario de Medium.
 
-Luego, ve a [cloudflareworkers.com](cloudflareworkers.com) y pega el código en el editor y haz click en el botón `Update`.
+Luego, ve a [cloudflareworkers.com](https://cloudflareworkers.com) y pega el código en el editor y haz click en el botón `Update`.
 
 Después de unos segundos deberías poder ver tu historial de Medium.
 
@@ -39,7 +39,7 @@ Ahora que jugamos un poco, es tiempo de subir nuestro código a un Cloudflare Wo
 
 Para realizar esto, necesitas tener una [cuenta gratuita de Cloudflare](https://dash.cloudflare.com/sign-up)
 
-Una vez que tengas una, no necesitas agregar un dominio personalizado. Sólo ve a [cloudflareworkers.com](cloudflareworkers.com) y haz click en login.
+Una vez que tengas una, no necesitas agregar un dominio personalizado. Sólo ve a [cloudflareworkers.com](https://cloudflareworkers.com)) y haz click en login.
 
 Deberías poder ver lo siguiente:
 
