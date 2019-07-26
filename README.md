@@ -14,6 +14,8 @@ It contains all the code neccesary to be deployed using [Cloudflare Workers](htt
 
 ### [Live demo](https://medium-feed.alekrumkamp.workers.dev/)
 
+### [Medium Post](https://medium.com/@alekrumkamp/how-to-fetch-your-medium-feed-in-17ms-using-cloudflare-workers-63a9c49c6c19)
+
 ***
 
 ### 

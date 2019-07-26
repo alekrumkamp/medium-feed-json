@@ -17,6 +17,8 @@ Contiene todo el código necesario para ser utilizado en  [Cloudflare Workers](h
 
 ### [Demo en vivo](https://medium-feed.alekrumkamp.workers.dev/)
 
+### [Artículo en Medium](https://medium.com/@alekrumkamp/c%C3%B3mo-traer-tu-historial-de-medium-en-17ms-usando-cloudflare-workers-bfb4daf058c0)
+
 ***
 
 ### 
@@ -73,7 +75,7 @@ Si quieres cambiar de nombre a tu worker, en la esquina superior izquiera puedes
 ***
 
 ### Obteniendo todas las entradas
-Cada petición devuelve un máximo de 10 articulos. Sin embargo el atributo `next` puede ser utilizado para devolver las próximas 10 entradas.
+Cada petición devuelve un máximo de 10 artículos. Sin embargo el atributo `next` puede ser utilizado para devolver las próximas 10 entradas.
 
 Simplemente llama al worker con el query param `next` con su valor correspondiente.
 
@@ -87,7 +89,7 @@ Pedido subsecuente:
 
 `https://medium-feed.alekrumkamp.workers.dev/?next=1483371523050`
 
-Una vez que todos los articulos han sido traídos, el atributo `next` ya no estará más presente.
+Una vez que todos los artículos han sido traídos, el atributo `next` ya no estará más presente.
 
 ***
 
