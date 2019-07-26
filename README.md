@@ -1,3 +1,5 @@
+[Leer versión en español](/README_ES.md)
+
 # Medium Feed JSON
 
 ## Fetch your Medium feed in 17ms in JSON format using Cloudflare Workers
@@ -6,7 +8,7 @@
 
 ### What's inside this repository?
 
-A facade that glues different Medium APIs to retrieve a clean and simple API interface to get a Medium user feed.
+A [facade](https://en.wikipedia.org/wiki/Facade_pattern) that glues different Medium APIs to retrieve a clean and simple API interface to get a Medium user feed.
 
 It contains all the code neccesary to be deployed using [Cloudflare Workers](https://workers.cloudflare.com/).
 
@@ -20,7 +22,7 @@ It contains all the code neccesary to be deployed using [Cloudflare Workers](htt
 ### Using build script on cloudflareworkers.com
 To get a glance of how easy is to fetch your own Medium Feed, you can simply copy the [script.js](/worker/script.js) build file and edit the following line `const username = 'alekrumkamp'` to your Medium username. 
 
-Then head to cloudflareworkers.com and paste your code in the editor and click the `Update` button.
+Then head to [cloudflareworkers.com](cloudflareworkers.com) and paste your code in the editor and click the `Update` button.
 
 After a few seconds you should be able to see your Medium feed.
 
@@ -28,11 +30,11 @@ After a few seconds you should be able to see your Medium feed.
 
 ### Deploy it for free to a workers.dev subdomain
 
-Now that we played around it's time to deploy our code to a Worker.
+Now that we played around it's time to deploy our code to a Cloudflare Worker.
 
 In order to do this you'll need a [Cloudflare free account](https://dash.cloudflare.com/sign-up) and get a worker namespace.
 
-Once you have an account, you don't need to add a custom domain. Just head to cloudflareworkers.com and click login.
+Once you have an account, you don't need to add a custom domain. Just head to [cloudflareworkers.com](cloudflareworkers.com) and click login.
 
 You should now be able to see this:
 
@@ -63,7 +65,7 @@ Your code will be live after a few seconds on `https://{workerName}.{workersSubd
 
 If you'd like to change the name of the worker, at the top left corner you can do so:
 
-![Change name field](/img/change-name-field.png "Change name field")
+![Change Worker's name field](/img/change-name-field.png "Change Worker's name field")
 
 ***
 
@@ -90,7 +92,7 @@ You sure can!
 
 In fact, this entire project was done using [Wrangler](https://github.com/cloudflare/wrangler).
 
-Once you get over the hype of using Cloudflare Workers and need to use code versioning and other tools you'll find that Wrangler becomes really handy to test and deploy in this serverless environment.
+Once you get over the hype of using Cloudflare Workers in [the playground](https://cloudflareworkers.com) and need to use code versioning and other tools you'll find that Wrangler becomes really handy to test and deploy in this serverless environment.
 
 You'll notice that I included a custom `webpack.config.js` file in the repository.
 
@@ -103,7 +105,7 @@ However if you are debugging I recommend you don't do so, so you can receive mea
 
 ### Using a custom domain
 
-After you have added your custom domain to Cloudflare, you can go to the workers section:
+After you have added your custom domain to Cloudflare, you can go to the Workers section:
 
 ![Workers menu](/img/workers-menu.png "Workers menu")
 
