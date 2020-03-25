@@ -25,7 +25,10 @@ class GraphqlFeedController {
     });
 
     const nextPagingInfo = response.data.user.latestStreamConnection.pagingInfo;
-    const nextId = nextPagingInfo && nextPagingInfo.next ? nextPagingInfo.next.to : undefined;
+    const nextId =
+      nextPagingInfo && nextPagingInfo.next
+        ? nextPagingInfo.next.to
+        : undefined;
 
     return {
       data: { posts: this.allPosts },
