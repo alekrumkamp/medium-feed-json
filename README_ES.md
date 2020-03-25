@@ -8,29 +8,30 @@
 
 ### ¿Qué hay en este repositorio?
 
-Una [fachada](<https://es.wikipedia.org/wiki/Facade_(patr%C3%B3n_de_dise%C3%B1o)>) que une diferentes APIs de Medium para devolver una interfaz de API limpia y simple para obtener un historial de Medium.
 
-Contiene todo el código necesario para ser utilizado en [Cloudflare Workers](https://workers.cloudflare.com/).
+
+Una [fachada](https://es.wikipedia.org/wiki/Facade_(patr%C3%B3n_de_dise%C3%B1o)) que une diferentes APIs de Medium para devolver una interfaz de API limpia y simple para obtener un historial de Medium.
+
+
+Contiene todo el código necesario para ser utilizado en  [Cloudflare Workers](https://workers.cloudflare.com/).
 
 ### [Demo en vivo](https://medium-feed.alekrumkamp.workers.dev/)
 
 ### [Artículo en Medium](https://medium.com/@alekrumkamp/c%C3%B3mo-traer-tu-historial-de-medium-en-17ms-usando-cloudflare-workers-bfb4daf058c0)
 
----
+***
 
-###
-
+### 
 ## Cómo empezar
 
 ### Utilizando código preprocesado en cloudflareworkers.com
-
 Para tener una idea de qué tan fácil es obtener tu historial de Medium, simplemente copia el [script.js](/worker/script.js) y edita la línea `const username = 'alekrumkamp'` por tu usuario de Medium.
 
 Luego, ve a [cloudflareworkers.com](https://cloudflareworkers.com) y pega el código en el editor y haz click en el botón `Update`.
 
 Después de unos segundos deberías poder ver tu historial de Medium.
 
----
+***
 
 ### Súbelo de manera gratuita a un subdominio de workers.dev
 
@@ -62,6 +63,7 @@ Para hacerlo, haz click en el botón `Save and deploy`.
 
 ![Botón Save and deploy](/img/save-and-deploy-button.png "Botón Save and deploy")
 
+
 _¡Y listo!_
 
 Tu código debería estar funcionando después de pocos segundos en `https://{workerName}.{workersSubdomain}.workers.dev`
@@ -70,10 +72,9 @@ Si quieres cambiar de nombre a tu worker, en la esquina superior izquiera puedes
 
 ![Campo para cambiar nombre de Worker](/img/change-name-field.png "Campo para cambiar nombre de Worker")
 
----
+***
 
 ### Obteniendo todas las entradas
-
 Cada petición devuelve un máximo de 10 artículos. Sin embargo el atributo `next` puede ser utilizado para devolver las próximas 10 entradas.
 
 Simplemente llama al worker con el query param `next` con su valor correspondiente.
@@ -90,7 +91,7 @@ Pedido subsecuente:
 
 Una vez que todos los artículos han sido traídos, el atributo `next` ya no estará más presente.
 
----
+***
 
 ### ¿Puedo utilizar Wrangler para hacer un build, una previsualización y publicar este proyecto a Cloudflare Workers?
 
@@ -106,7 +107,8 @@ Si quieres hacer más compacto el código antes de subirlo, puedes hacerlo simpl
 
 Sin embargo si te encuentras depurando código y quieres ver mensajes de errores que sirvan del estilo `Error en la línea X`, te sugiero que no lo hagas.
 
----
+
+***
 
 ### Utilizando un dominio personalizado
 
@@ -124,26 +126,19 @@ Ahora, simplemente es hacer una relación entre una ruta y su correspondiente Wo
 
 ![Modal para crear nueva ruta](/img/route-modal.png "Modal para crear nueva ruta")
 
----
+***
 
-## Errores comunes
+## Preguntas comunes
 
-### I'm receiving a Error 1101 Worker threw exception
+### Recibo un Error 1101 Worker threw exception
 
-There a few different reasons why the worker might actually fail:
+Es posible que estés tratando de consultar la cuenta de Medium o una cuenta vacia. Ninguno de estos casos está soportado.
 
-### You are trying to either fetch Medium account or an empty account
+### Sólo recibo tres entradas por petición
 
-Both of these cases are not supported.
+Usar Cloudflare workers gratis te deja usar hasta 10ms de CPU por petición. Como este servicio hace parseo de texto, puede llegar a superar el límite y para obtener una experiencia más consistente a la hora de usar la API, lo bajé a 3 entradas.
 
-### I'm only receiving three posts per request
+Puedes resolver este problema incrementando el límite a 10 entradas en el objeto dentro de [graphqlRequestBody.js](/src/Model/graphqlRequestBody/graphqlRequestBody.js). Eso si, puede aumentar la cantidad de peticiones fallidas a menos que cuentes con una cuenta de Cloudflare Workers Unlimited.
 
-Using Cloudflare workers for free lets you use up to 10ms CPU time. Since this service uses some parsing it may exceed it if the user you are fetching has lots of text content.
-
-You may solve this problem by increasing the limit to 10 posts to be fetched on each request inside the object that is being return in [graphqlRequestBody.js](/src/Model/graphqlRequestBody/graphqlRequestBody.js). However, be aware that if you don't have a Cloudflare Workers Unlimited account request may fail.
-
-### Script exceeded time limit
-
-### Mis peticiones están tardando considerablemente más de 17ms
-
+### Mis peticiones están tardando considerablemente más de  17ms
 Todas las peticiones necesitan ser traídas desde Medium la primera vez por cada región de cache de Cloudflare. Sin embargo luego de esto, los pedidos serán entregados con muchísima velocidad.

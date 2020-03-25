@@ -128,11 +128,7 @@ Now it's simply a matter of matching a route with its corresponding worker:
 
 ### I'm receiving a Error 1101 Worker threw exception
 
-There a few different reasons why the worker might actually fail:
-
-### You are trying to either fetch Medium account or an empty account
-
-Both of these cases are not supported.
+You may be trying to either fetch Medium account or an empty account. Neither of these cases are supported.
 
 ### I'm only receiving three posts per request
 
