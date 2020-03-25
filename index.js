@@ -1,5 +1,5 @@
-const { handleRequest } = require('./src/fetch');
+const { handleRequest } = require("./src/fetch");
 
-addEventListener('fetch', (event) => {
+addEventListener("fetch", event => {
   event.respondWith(handleRequest(event));
 });

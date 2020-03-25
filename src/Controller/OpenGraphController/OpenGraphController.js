@@ -9,9 +9,21 @@ class OpenGraphController {
 
   fillRemainingPostInfo(post, partialHTMLFromPost) {
     const finishedPost = post;
-    finishedPost.description = this.findPostPropertyFromString('property="og:description" content="', '"', partialHTMLFromPost);
-    finishedPost.title = this.findPostPropertyFromString('property="og:title" content="', '"', partialHTMLFromPost);
-    finishedPost.imageUrl = this.findPostPropertyFromString('property="og:image" content="', '"', partialHTMLFromPost);
+    finishedPost.description = this.findPostPropertyFromString(
+      'property="og:description" content="',
+      '"',
+      partialHTMLFromPost
+    );
+    finishedPost.title = this.findPostPropertyFromString(
+      'property="og:title" content="',
+      '"',
+      partialHTMLFromPost
+    );
+    finishedPost.imageUrl = this.findPostPropertyFromString(
+      'property="og:image" content="',
+      '"',
+      partialHTMLFromPost
+    );
     return finishedPost;
   }
 
@@ -22,7 +34,7 @@ class OpenGraphController {
       return fetch(anIncompletePost.url)
         .then(res => res.text())
         .then(res => this.fillRemainingPostInfo(anIncompletePost, res))
-        .then((res) => {
+        .then(res => {
           finalPosts.push(res);
           return this.completePosts(response, finalPosts);
         });

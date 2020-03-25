@@ -4,3 +4,4 @@ zone_id = ""
 private = false
 account_id = ""
 route = ""
+webpack_config = "webpack.config.js"

@@ -16,19 +16,21 @@ It contains all the code neccesary to be deployed using [Cloudflare Workers](htt
 
 ### [Medium Post](https://medium.com/@alekrumkamp/how-to-fetch-your-medium-feed-in-17ms-using-cloudflare-workers-63a9c49c6c19)
 
-***
+---
 
-### 
+###
+
 ## How to get started
 
 ### Using build script on cloudflareworkers.com
-To get a glance of how easy is to fetch your own Medium Feed, you can simply copy the [script.js](/worker/script.js) build file and edit the following line `const username = 'alekrumkamp'` to your Medium username. 
 
-Then head to [cloudflareworkers.com]([cloudflareworkers.com](https://cloudflareworkers.com)) and paste your code in the editor and click the `Update` button.
+To get a glance of how easy is to fetch your own Medium Feed, you can simply copy the [script.js](/worker/script.js) build file and edit the following line `const username = 'alekrumkamp'` to your Medium username.
+
+Then head to [cloudflareworkers.com](<[cloudflareworkers.com](https://cloudflareworkers.com)>) and paste your code in the editor and click the `Update` button.
 
 After a few seconds you should be able to see your Medium feed.
 
-***
+---
 
 ### Deploy it for free to a workers.dev subdomain
 
@@ -56,10 +58,9 @@ Paste the `worker/script.js` code from the repository with your username into th
 
 ![Worker editor](/img/worker-editor.png "Worker editor")
 
-To do so, just click the `Save and deploy` button: 
+To do so, just click the `Save and deploy` button:
 
 ![Save and deploy button](/img/save-and-deploy-button.png "Save and deploy button")
-
 
 _Aaand we are done!_
 
@@ -69,9 +70,10 @@ If you'd like to change the name of the worker, at the top left corner you can d
 
 ![Change Worker's name field](/img/change-name-field.png "Change Worker's name field")
 
-***
+---
 
 ### Retrieving all your posts
+
 Each request brings up to 10 posts. However the `next` attribute can be use to retrieve the following 10 entries. Simply call your worker with the query param `next` with the value of it.
 
 For example:
@@ -86,7 +88,7 @@ Follow up Request:
 
 Once all posts are fetched, the attribute `next` will not longer be present.
 
-***
+---
 
 ### Can I use Wrangler to build, preview and publish this project to Cloudflare Workers?
 
@@ -102,8 +104,7 @@ If you'd like to minify your bundle before deploying, you can do so by simply de
 
 However if you are debugging I recommend you don't do so, so you can receive meaningful `Error on line X` kind of debugging hints.
 
-
-***
+---
 
 ### Using a custom domain
 
@@ -121,7 +122,24 @@ Now it's simply a matter of matching a route with its corresponding worker:
 
 ![Create route modal](/img/route-modal.png "Create route modal")
 
-***
+---
+
+## Troubleshooting
+
+### I'm receiving a Error 1101 Worker threw exception
+
+There a few different reasons why the worker might actually fail:
+
+### You are trying to either fetch Medium account or an empty account
+
+Both of these cases are not supported.
+
+### I'm only receiving three posts per request
+
+Using Cloudflare workers for free lets you use up to 10ms CPU time. Since this service uses some parsing it may exceed it if the user you are fetching has lots of text content.
+
+You may solve this problem by increasing the limit to 10 posts to be fetched on each request inside the object that is being return in [graphqlRequestBody.js](/src/Model/graphqlRequestBody/graphqlRequestBody.js). However, be aware that if you don't have a Cloudflare Workers Unlimited account request may fail.
 
 ### My request is taking considerably longer than 17ms
+
 All requests have to be fetched from Medium the first time for each Cloudflare cache region. However after initial fetching these will be blazing fast.

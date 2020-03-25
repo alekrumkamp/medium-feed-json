@@ -8,7 +8,7 @@ class UserController {
   }
 
   extractIdFromString(string) {
-    return string.split('-')[1];
+    return string.split("-")[1];
   }
 
   getUserId() {
