@@ -24,9 +24,16 @@ It contains all the code neccesary to be deployed using [Cloudflare Workers](htt
 
 ### Using build script on cloudflareworkers.com
 
-To get a glance of how easy is to fetch your own Medium Feed, you can simply copy the [script.js](/worker/script.js) build file and edit the following line `const username = 'alekrumkamp'` to your Medium username.
+To get a glance of how easy it is to fetch your own Medium Feed, you can simply copy the [script.js](/worker/script.js) build file and head to [cloudflareworkers.com](<[cloudflareworkers.com](https://cloudflareworkers.com)>) and paste your code in the editor.
 
-Then head to [cloudflareworkers.com](<[cloudflareworkers.com](https://cloudflareworkers.com)>) and paste your code in the editor and click the `Update` button.
+Then add a username param on your worker url as shown below;
+
+```
+example.subdomain.workers.dev?username={YOUR_MEDIUM_USERNAME}
+```
+
+edit the following {YOUR_MEDIUM_USERNAME} to your Medium username and click the `Send` button..
+
 
 After a few seconds you should be able to see your Medium feed.
 
