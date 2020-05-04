@@ -34,7 +34,6 @@ example.subdomain.workers.dev?username={YOUR_MEDIUM_USERNAME}
 
 edit the following {YOUR_MEDIUM_USERNAME} to your Medium username and click the `Send` button..
 
-
 After a few seconds you should be able to see your Medium feed.
 
 ---
