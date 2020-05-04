@@ -9,7 +9,6 @@ const {
 } = require("./Controller/OpenGraphController/OpenGraphController");
 
 const cloudflareCache = caches.default;
-const username = "alekrumkamp";
 
 function createResponse(content) {
   const responseHeader = new Headers();
@@ -42,6 +41,7 @@ exports.handleRequest = async function handleRequest(event) {
 
   const finalPosts = [];
   const nextPageId = getSearchFromUrl(event.request.url, "next");
+  const username =  getSearchFromUrl(event.request.url, "username");
 
   const graphqlFeedController = new GraphqlFeedController();
   const userController = new UserController(username);
