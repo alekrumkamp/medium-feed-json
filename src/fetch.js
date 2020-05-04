@@ -41,7 +41,7 @@ exports.handleRequest = async function handleRequest(event) {
 
   const finalPosts = [];
   const nextPageId = getSearchFromUrl(event.request.url, "next");
-  const username =  getSearchFromUrl(event.request.url, "username");
+  const username = getSearchFromUrl(event.request.url, "username");
 
   const graphqlFeedController = new GraphqlFeedController();
   const userController = new UserController(username);
