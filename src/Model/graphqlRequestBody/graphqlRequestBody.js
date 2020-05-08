@@ -1,4 +1,4 @@
-exports.graphqlRequestBody = function graphqlRequestBody(userId, to) {
+exports.graphqlRequestBody = function graphqlRequestBody(userId, to, limit) {
   if (!userId) {
     throw { error: "userId is a required field of followUpRequest" };
   }
@@ -7,7 +7,7 @@ exports.graphqlRequestBody = function graphqlRequestBody(userId, to) {
     variables: {
       userId,
       pagingOptions: {
-        limit: 3,
+        limit: limit ? limit : 5,
         page: 1,
         source: "latest",
         to,

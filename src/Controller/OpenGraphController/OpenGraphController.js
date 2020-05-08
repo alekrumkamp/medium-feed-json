@@ -9,6 +9,16 @@ class OpenGraphController {
 
   fillRemainingPostInfo(post, partialHTMLFromPost) {
     const finishedPost = post;
+    finishedPost.author = this.findPostPropertyFromString(
+      'name="author" content="',
+      '"',
+      partialHTMLFromPost
+    );
+    finishedPost.authorLink = this.findPostPropertyFromString(
+      'property="article:author" content="',
+      '"',
+      partialHTMLFromPost
+    );
     finishedPost.description = this.findPostPropertyFromString(
       'property="og:description" content="',
       '"',
@@ -24,7 +34,20 @@ class OpenGraphController {
       '"',
       partialHTMLFromPost
     );
+    finishedPost.pubDate = this.findPostPropertyFromString(
+      'property="article:published_time" content="',
+      '"',
+      partialHTMLFromPost
+    );
     return finishedPost;
+  }
+
+  getImageIdFromUrl(payload) {
+    const url = new URL(payload);
+    const path = url.pathname.split("/");
+    const imageId = path[3];
+    //console.log(path[3]);
+    return imageId;
   }
 
   completePosts(response, finalPosts) {
