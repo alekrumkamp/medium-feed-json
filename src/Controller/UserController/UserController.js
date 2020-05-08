@@ -11,6 +11,12 @@ class UserController {
     return string.split("-")[1];
   }
 
+  getUser() {
+    return fetch(this.getUserPath())
+      .then(response => response.json())
+      .then(jsonResponse => jsonResponse.feed);
+  }
+
   getUserId() {
     return fetch(this.getUserPath())
       .then(response => response.json())

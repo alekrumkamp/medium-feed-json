@@ -41,6 +41,7 @@ exports.handleRequest = async function handleRequest(event) {
 
   const finalPosts = [];
   const nextPageId = getSearchFromUrl(event.request.url, "next");
+  const limit = getSearchFromUrl(event.request.url, "limit");
   const username = getSearchFromUrl(event.request.url, "username");
 
   const graphqlFeedController = new GraphqlFeedController();
@@ -48,8 +49,8 @@ exports.handleRequest = async function handleRequest(event) {
   const openGraphController = new OpenGraphController();
 
   return userController
-    .getUserId()
-    .then(userId => graphqlFeedController.getFeed(userId, nextPageId))
+    .getUser()
+    .then(User => graphqlFeedController.getFeed(User, nextPageId, limit))
     .then(latestIncompletePosts =>
       openGraphController.completePosts(latestIncompletePosts, finalPosts)
     )
