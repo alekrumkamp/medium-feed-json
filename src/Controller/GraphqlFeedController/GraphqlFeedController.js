@@ -12,15 +12,15 @@ class GraphqlFeedController {
     return "https://medium.com/_/graphql";
   }
 
-  getImageIdFromUrl(payload){
+  getImageIdFromUrl(payload) {
     const url = new URL(payload);
-    const path = url.pathname.split('/');
+    const path = url.pathname.split("/");
     const imageId = path[3];
     //console.log(path[3]);
     return imageId;
   }
 
-  adaptPosts(response,userImage) {
+  adaptPosts(response, userImage) {
     response.data.user.latestStreamConnection.stream.forEach(item => {
       if (item.itemType.post) {
         const p = new Post(
@@ -50,7 +50,6 @@ class GraphqlFeedController {
   }
 
   getFeed(user, to, limit) {
-
     const userId = this.extractIdFromString(user.link);
     const userImage = user.image;
     return fetch(this.getGraphqlFeedPath(), {

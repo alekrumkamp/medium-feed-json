@@ -42,10 +42,9 @@ class OpenGraphController {
     return finishedPost;
   }
 
-
-  getImageIdFromUrl(payload){
+  getImageIdFromUrl(payload) {
     const url = new URL(payload);
-    const path = url.pathname.split('/');
+    const path = url.pathname.split("/");
     const imageId = path[3];
     //console.log(path[3]);
     return imageId;

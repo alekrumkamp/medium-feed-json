@@ -7,7 +7,7 @@ exports.graphqlRequestBody = function graphqlRequestBody(userId, to, limit) {
     variables: {
       userId,
       pagingOptions: {
-        limit: limit? limit : 5,
+        limit: limit ? limit : 5,
         page: 1,
         source: "latest",
         to,
