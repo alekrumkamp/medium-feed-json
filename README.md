@@ -18,15 +18,16 @@ It contains all the code neccesary to be deployed using [Cloudflare Workers](htt
 
 ---
 
-###
-
 ## How to get started
 
 ### Using build script on cloudflareworkers.com
 
-To get a glance of how easy is to fetch your own Medium Feed, you can simply copy the [script.js](/worker/script.js) build file and edit the following line `const username = 'alekrumkamp'` to your Medium username.
-
-Then head to [cloudflareworkers.com](<[cloudflareworkers.com](https://cloudflareworkers.com)>) and paste your code in the editor and click the `Update` button.
+To get a glance of how easy is to fetch your own Medium Feed, do the following: 
+1. Copy the [script.js](/worker/script.js) build file
+2. Head to [cloudflareworkers.com](https://cloudflareworkers.com)
+3. Paste the code in the editor
+4. Add your username to the URL, like `https://tutorial.cloudflareworkers.com?username=alekrumkamp/`
+5. Click the `Update` button
 
 After a few seconds you should be able to see your Medium feed.
 
@@ -54,7 +55,7 @@ Now that we have our name space we can create a Worker for it!
 
 Here we will encounter a similar editor to the one present in cloudflareworkers.com. The difference this time is that instead of just toying around with the code, it can run and be deployed in seconds to your Worker subdomain.
 
-Paste the `worker/script.js` code from the repository with your username into the editor.
+Paste the `worker/script.js` code from the repository into the editor.
 
 ![Worker editor](/img/worker-editor.png "Worker editor")
 
@@ -80,11 +81,11 @@ For example:
 
 Initial Request:
 
-`https://medium-feed.alekrumkamp.workers.dev/`
+`https://medium-feed.alekrumkamp.workers.dev?username=alekrumkamp`
 
 Follow up Request:
 
-`https://medium-feed.alekrumkamp.workers.dev/?next=1483371523050`
+`https://medium-feed.alekrumkamp.workers.dev?username=alekrumkamp&next=1483371523050`
 
 Once all posts are fetched, the attribute `next` will not longer be present.
 

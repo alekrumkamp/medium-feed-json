@@ -130,9 +130,7 @@
       const { GraphqlFeedController } = __webpack_require__(2);
       const { UserController } = __webpack_require__(5);
       const { OpenGraphController } = __webpack_require__(6);
-
       const cloudflareCache = caches.default;
-      const username = "alekrumkamp";
 
       function createResponse(content) {
         const responseHeader = new Headers();
@@ -165,6 +163,7 @@
 
         const finalPosts = [];
         const nextPageId = getSearchFromUrl(event.request.url, "next");
+        const username = getSearchFromUrl(event.request.url, "username");
 
         const graphqlFeedController = new GraphqlFeedController();
         const userController = new UserController(username);
