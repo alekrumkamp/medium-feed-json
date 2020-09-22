@@ -156,10 +156,7 @@
 
       exports.handleRequest = async function handleRequest(event) {
         const cachedResponse = await cloudflareCache.match(event.request);
-
-        if (cachedResponse) {
-          return cachedResponse;
-        }
+        if (cachedResponse) return cachedResponse;
 
         const finalPosts = [];
         const nextPageId = getSearchFromUrl(event.request.url, "next");
@@ -201,7 +198,8 @@
               const p = new Post(
                 item.itemType.post.id,
                 item.itemType.post.mediumUrl,
-                item.itemType.post.createdAt
+                item.itemType.post.createdAt,
+                item.itemType.post.collection
               );
               this.allPosts.push(p);
             }
@@ -222,10 +220,10 @@
 
         getFeed(userId, to) {
           return fetch(this.getGraphqlFeedPath(), {
-            method: "POST",
-            body: graphqlRequestBody(userId, to),
-            headers: { "Content-Type": "application/json" }
-          })
+              method: "POST",
+              body: graphqlRequestBody(userId, to),
+              headers: { "Content-Type": "application/json" }
+            })
             .then(response => response.json())
             .then(jsonResponse => this.adaptPosts(jsonResponse, userId));
         }
@@ -263,10 +261,11 @@
     /* 4 */
     /***/ function(module, exports) {
       class Post {
-        constructor(anId, aUrl, aCreationDate) {
+        constructor(anId, aUrl, aCreationDate, aCollection) {
           this.id = this.requiredProperty(anId);
           this.url = this.requiredProperty(aUrl);
           this.createdAt = this.requiredProperty(aCreationDate);
+          this.publicationName = aCollection ? aCollection.name : "";
           this.title = "";
           this.description = "";
           this.imageUrl = "";
@@ -317,9 +316,7 @@
       class OpenGraphController {
         findPostPropertyFromString(startNeedle, finishNeedle, haystack) {
           let finding = haystack.split(startNeedle)[1];
-          if (finding) {
-            finding = finding.split(finishNeedle)[0];
-          }
+          if (finding) finding = finding.split(finishNeedle)[0];
           return finding;
         }
 
