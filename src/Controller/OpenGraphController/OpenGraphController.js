@@ -1,9 +1,7 @@
 class OpenGraphController {
   findPostPropertyFromString(startNeedle, finishNeedle, haystack) {
     let finding = haystack.split(startNeedle)[1];
-    if (finding) {
-      finding = finding.split(finishNeedle)[0];
-    }
+    if (finding) finding = finding.split(finishNeedle)[0];
     return finding;
   }
 
@@ -29,7 +27,6 @@ class OpenGraphController {
 
   completePosts(response, finalPosts) {
     const anIncompletePost = response.data.posts.pop();
-
     if (anIncompletePost) {
       return fetch(anIncompletePost.url)
         .then(res => res.text())
@@ -41,7 +38,6 @@ class OpenGraphController {
     }
 
     response.data.posts = finalPosts;
-
     return response;
   }
 }

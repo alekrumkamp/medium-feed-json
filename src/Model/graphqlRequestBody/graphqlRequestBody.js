@@ -1,7 +1,6 @@
 exports.graphqlRequestBody = function graphqlRequestBody(userId, to) {
-  if (!userId) {
-    throw { error: "userId is a required field of followUpRequest" };
-  }
+  if (!userId) throw { error: "userId is a required field of followUpRequest" };
+  
   return JSON.stringify({
     operationName: "UserStreamLatest",
     variables: {

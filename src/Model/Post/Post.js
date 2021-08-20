@@ -1,17 +1,16 @@
 class Post {
-  constructor(anId, aUrl, aCreationDate) {
-    this.id = this.requiredProperty(anId);
-    this.url = this.requiredProperty(aUrl);
-    this.createdAt = this.requiredProperty(aCreationDate);
+  constructor(id, url, creationDate, collection) {
+    this.id = this.requiredProperty(id);
+    this.url = this.requiredProperty(url);
+    this.createdAt = this.requiredProperty(creationDate);
+    this.publicationName = collection ? collection.name : "";
     this.title = "";
     this.description = "";
     this.imageUrl = "";
   }
 
   requiredProperty(property) {
-    if (!property) {
-      throw "A property is missing to create a new post";
-    }
+    if (!property) throw "A property is missing to create a new post";
     return property;
   }
 }

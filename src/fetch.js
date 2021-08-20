@@ -9,8 +9,6 @@ const {
 } = require("./Controller/OpenGraphController/OpenGraphController");
 
 const cloudflareCache = caches.default;
-const username = "alekrumkamp";
-
 function createResponse(content) {
   const responseHeader = new Headers();
   responseHeader.append("Content-Type", "application/json");
@@ -35,16 +33,12 @@ function getSearchFromUrl(url, queryParam) {
 
 exports.handleRequest = async function handleRequest(event) {
   const cachedResponse = await cloudflareCache.match(event.request);
-
-  if (cachedResponse) {
-    return cachedResponse;
-  }
+  if (cachedResponse) return cachedResponse;
 
   const finalPosts = [];
   const nextPageId = getSearchFromUrl(event.request.url, "next");
-
   const graphqlFeedController = new GraphqlFeedController();
-  const userController = new UserController(username);
+  const userController = new UserController(USERNAME);
   const openGraphController = new OpenGraphController();
 
   return userController
