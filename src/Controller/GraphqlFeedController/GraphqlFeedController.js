@@ -18,7 +18,8 @@ class GraphqlFeedController {
         const p = new Post(
           item.itemType.post.id,
           item.itemType.post.mediumUrl,
-          item.itemType.post.createdAt
+          item.itemType.post.createdAt,
+          item.itemType.post.collection
         );
         this.allPosts.push(p);
       }
@@ -42,8 +43,8 @@ class GraphqlFeedController {
       body: graphqlRequestBody(userId, to),
       headers: { "Content-Type": "application/json" }
     })
-      .then(response => response.json())
-      .then(jsonResponse => this.adaptPosts(jsonResponse, userId));
+    .then(response => response.json())
+    .then(jsonResponse => this.adaptPosts(jsonResponse, userId));
   }
 }
 
