@@ -127,8 +127,10 @@ Now it's simply a matter of matching a route with its corresponding worker:
 ## Troubleshooting
 
 ### I'm receiving a Error 1101 Worker threw exception
+Third-party [rss2json](https://rss2json.com/docs) may be rate limiting your requests. Consider creating a free account with them to obtain your API and then adding the `api_key` query param with your API key to the `getUserPath` method in [UserController.js](/src/Controller/UserController/UserController.js).
 
 You may be trying to either fetch Medium account or an empty account. Neither of these cases are supported.
+
 
 ### I'm only receiving three posts per request
 

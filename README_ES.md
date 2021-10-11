@@ -130,6 +130,8 @@ Ahora, simplemente es hacer una relación entre una ruta y su correspondiente Wo
 
 ### Recibo un Error 1101 Worker threw exception
 
+La API externa, [rss2json],(https://rss2json.com/docs) puede estar limitando la cantidad de peticiones que estás haciendo. Considera crear una cuenta gratitua para obtener tu API Key.Luego la puedes utilizar, agregando el query param  `api_key` junto al valor de tu API key en el método `getUserPath` en [UserController.js](/src/Controller/UserController/UserController.js).
+
 Es posible que estés tratando de consultar la cuenta de Medium o una cuenta vacia. Ninguno de estos casos está soportado.
 
 ### Sólo recibo tres entradas por petición
