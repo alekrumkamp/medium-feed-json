@@ -34,25 +34,30 @@ function getSearchFromUrl(url, queryParam) {
 }
 
 exports.handleRequest = async function handleRequest(event) {
-  const cachedResponse = await cloudflareCache.match(event.request);
+  try {
+    const cachedResponse = await cloudflareCache.match(event.request);
 
-  if (cachedResponse) {
-    return cachedResponse;
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+
+    const finalPosts = [];
+    const nextPageId = getSearchFromUrl(event.request.url, "next");
+
+    const graphqlFeedController = new GraphqlFeedController();
+    const userController = new UserController(username);
+    const openGraphController = new OpenGraphController();
+
+    return userController
+      .getUserId()
+      .then(userId => graphqlFeedController.getFeed(userId, nextPageId))
+      .then(latestIncompletePosts =>
+        openGraphController.completePosts(latestIncompletePosts, finalPosts)
+      )
+      .then(latestPosts => createResponse(latestPosts))
+      .then(response => cacheResponse(event, response));
+  } catch (error) {
+    console.log(error);
+    return createResponse({ error: error.message });
   }
-
-  const finalPosts = [];
-  const nextPageId = getSearchFromUrl(event.request.url, "next");
-
-  const graphqlFeedController = new GraphqlFeedController();
-  const userController = new UserController(username);
-  const openGraphController = new OpenGraphController();
-
-  return userController
-    .getUserId()
-    .then(userId => graphqlFeedController.getFeed(userId, nextPageId))
-    .then(latestIncompletePosts =>
-      openGraphController.completePosts(latestIncompletePosts, finalPosts)
-    )
-    .then(latestPosts => createResponse(latestPosts))
-    .then(response => cacheResponse(event, response));
 };
