@@ -21,6 +21,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16
+        registry-url: 'https://registry.npmjs.org/'
 
     - name: Install dependencies
       run: pnpm install
@@ -28,6 +29,6 @@ jobs:
     - name: Publish to npmjs Package Registry
       run: |
         git checkout master
-        pnpm publish --publish --registry https://registry.npmjs.org/
+        pnpm publish --publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
