@@ -1,6 +1,6 @@
 {
   "name": "medium-feed-json",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Fetch your Medium feed in JSON format using Cloudflare Workers",
   "main": "index.js",
   "scripts": {

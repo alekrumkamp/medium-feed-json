@@ -10,7 +10,7 @@ It contains all the code neccesary to be deployed using [Cloudflare Workers](htt
 
 To get a glance of how easy is to fetch your own Medium Feed, do the following: 
 1. Clone this repository locally
-2. Install [Wrangler](https://github.com/cloudflare/wrangler) globally: `npm i @cloudflare/wrangler -g`
+2. Install [Wrangler](https://github.com/cloudflare/wrangler) via `pnpm install`
 3. Change the `USERNAME` variable in `wrangler.toml` to your Medium username
 4. Head to [rss2json](https://rss2json.com/) and sign up for an account
 5. Copy your rss2json API key
@@ -22,8 +22,7 @@ To get a glance of how easy is to fetch your own Medium Feed, do the following:
 
 ### Retrieving all your posts
 
-Each request brings up to 10 posts. However, the `next` attribute can be use to retrieve 
-the following 10 entries. Simply call your worker with the query param `next` with the value of it.
+Each request brings up to 10 posts. However, the `next` attribute can be use to retrieve the following 10 entries. Simply call your worker with the query param `next` with the value of it.
 
 For an example of how to implement this behavior, look [here](https://github.com/meese-os/meeseOS/blob/master/apps/old-site/src/components/home/Articles.jsx#L18). Simply put:
 
