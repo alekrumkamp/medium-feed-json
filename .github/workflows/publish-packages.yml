@@ -27,6 +27,7 @@ jobs:
 
     - name: Publish to npmjs Package Registry
       run: |
+        git checkout master
         pnpm publish --publish --registry https://registry.npmjs.org/
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
