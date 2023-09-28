@@ -25,9 +25,6 @@ jobs:
     - name: Install dependencies
       run: pnpm install
 
-    - name: Build packages
-      run: pnpm run build
-
     - name: Publish to npmjs Package Registry
       run: |
         pnpm publish --publish --registry https://registry.npmjs.org/

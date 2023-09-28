@@ -4,6 +4,7 @@
   "description": "Fetch your Medium feed in JSON format using Cloudflare Workers",
   "main": "index.js",
   "scripts": {
+    "preinstall": "git config core.hooksPath hooks",
     "build": "wrangler build",
     "preview": "wrangler preview --watch",
     "publish": "wrangler publish"

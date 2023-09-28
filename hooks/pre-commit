@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Change to the project root directory
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+# Build the project
+pnpm run build
+
+# Add the built files to the commit
+git add dist worker
+
+# Continue with the default pre-commit actions
+exit $?
