@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
 
     - uses: pnpm/action-setup@v2
       with:
@@ -30,4 +30,4 @@ jobs:
         git checkout master
         pnpm publish --publish --registry https://registry.npmjs.org/
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
