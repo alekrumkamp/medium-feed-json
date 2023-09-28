@@ -34,7 +34,6 @@ jobs:
 
     - name: Publish to npmjs Package Registry
       run: |
-        git checkout master
         pnpm publish --publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
