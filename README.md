@@ -25,13 +25,13 @@ To get a glance of how easy is to fetch your own Medium Feed, do the following:
 Each request brings up to 10 posts. However, the `next` attribute can be use to retrieve 
 the following 10 entries. Simply call your worker with the query param `next` with the value of it.
 
-For an example of how to implement this behavior, look [here](https://github.com/ajmeese7/aaronmeese.com/blob/master/src/components/home/Articles.jsx#L15). Simply put:
+For an example of how to implement this behavior, look [here](https://github.com/meese-os/meeseOS/blob/master/apps/old-site/src/components/home/Articles.jsx#L18). Simply put:
 
-Initial Request:
+Initial request:
 
 `https://medium-feed.ajmeese7.workers.dev`
 
-Follow up Request:
+Follow up request:
 
 `https://medium-feed.ajmeese7.workers.dev?next=1483371523050`
 

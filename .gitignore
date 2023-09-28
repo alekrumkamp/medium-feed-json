@@ -1,9 +1,6 @@
 /target
-**/*.rs.bk
-Cargo.lock
 bin/
 pkg/
 wasm-pack.log
 worker/metadata.json
 node_modules/
-.cargo-ok
