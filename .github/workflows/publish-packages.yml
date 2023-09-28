@@ -26,6 +26,13 @@ jobs:
     - name: Install dependencies
       run: pnpm install
 
+    - name: Login to Wrangler
+      shell: bash
+      run: |
+        echo "$CLOUDFLARE_API_KEY" | npx wrangler config
+      env:
+        CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+
     - name: Publish to npmjs Package Registry
       run: |
         git checkout master
